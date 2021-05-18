@@ -54,7 +54,8 @@ def api_recommend(request):
                 new_df=new_df.append(df[df["productName"]==product],ignore_index=True)
             new_df = new_df[:9]
     #print(new_df)
-            response_dict = {"recommendedProducts": new_df.to_json(orient='records')}
-            print(new_df.to_json(orient='records'))
+            #print(json.dumps(new_df))
+            response_dict = {"recommendedProducts":(json.loads(new_df.to_json(orient='records')))}
+            #print(new_df.to_json(orient='records'))
     return Response(response_dict, status=status.HTTP_201_CREATED)
 
